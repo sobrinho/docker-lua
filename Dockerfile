@@ -1,9 +1,9 @@
-FROM buildpack-deps:jessie-scm
+FROM debian:jessie
 MAINTAINER Nicholas Iaquinto <nickiaq@gmail.com>
 
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y build-essential zip unzip libreadline-dev && \
+    apt-get install -y build-essential curl zip unzip libreadline-dev && \
     apt-get clean && \
     mkdir /usr/bin/lua
 
