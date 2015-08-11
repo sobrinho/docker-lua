@@ -15,8 +15,10 @@ RUN apt-get update && \
     echo "${LUA_HASH} lua-${LUA_VERSION}.tar.gz" | md5sum -c - && \
     tar zxf lua-${LUA_VERSION}.tar.gz && \
     cd lua-${LUA_VERSION} && \
-    make linux test && make install && \
-    cd .. && rm -rf *.tar.gz lua-${LUA_VERSION} && \
+    make linux test && \
+    make install && \
+    cd .. && \
+    rm -rf *.tar.gz lua-${LUA_VERSION} && \
     apt-get purge -y --auto-remove build-essential curl libreadline-dev
 
 CMD ["/usr/local/bin/lua"]
