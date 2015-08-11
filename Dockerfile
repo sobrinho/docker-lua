@@ -9,8 +9,8 @@ ENV LUA_VERSION ${LUA_MAJOR_VERSION}.${LUA_MINOR_VERSION}
 RUN apt-get update && \
     apt-get install -y build-essential curl libreadline-dev && \
     rm -rf /var/lib/apt/lists/* && \
-    mkdir /usr/bin/lua && \
-    cd /usr/bin/lua && \
+    mkdir /usr/src/lua && \
+    cd /usr/src/lua && \
     echo "${LUA_HASH} lua-${LUA_VERSION}.tar.gz" > lua-${LUA_VERSION}.md5 && \
     curl -R -O http://www.lua.org/ftp/lua-${LUA_VERSION}.tar.gz && \
     md5sum -c lua-${LUA_VERSION}.md5 && \
