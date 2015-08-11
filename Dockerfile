@@ -11,13 +11,12 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     mkdir /usr/src/lua && \
     cd /usr/src/lua && \
-    echo "${LUA_HASH} lua-${LUA_VERSION}.tar.gz" > lua-${LUA_VERSION}.md5 && \
     curl -R -O http://www.lua.org/ftp/lua-${LUA_VERSION}.tar.gz && \
-    md5sum -c lua-${LUA_VERSION}.md5 && \
+    echo "${LUA_HASH} lua-${LUA_VERSION}.tar.gz" | md5sum -c - && \
     tar zxf lua-${LUA_VERSION}.tar.gz && \
     cd lua-${LUA_VERSION} && \
     make linux test && make install && \
-    cd .. && rm -rf *.tar.gz *.md5 lua-${LUA_VERSION} && \
+    cd .. && rm -rf *.tar.gz lua-${LUA_VERSION} && \
     apt-get purge -y --auto-remove build-essential curl libreadline-dev
 
 CMD ["/usr/local/bin/lua"]
